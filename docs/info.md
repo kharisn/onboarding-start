@@ -33,7 +33,11 @@ commands and uses them to control 16 output pins via PWM signals.
 
 ## How to test
 
-Explain how to use your project
+1. Send an SPI write transaction with nCS low, 16 clock cycles on SCLK, and data on COPI.
+2. Write to register 0x00 to enable outputs on uo_out.
+3. Write to register 0x02 to enable PWM mode on those outputs.
+4. Write to register 0x04 to set the duty cycle (0x00=0%, 0xFF=100%).
+5. Observe PWM signals on the output pins.
 
 ## External hardware
 
