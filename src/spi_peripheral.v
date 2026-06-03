@@ -51,7 +51,7 @@ module spi_peripheral(
     reg [6:0] address_shift;
     reg [7:0] data_shift;
     reg [3:0] bit_count;
-    reg transaction_valid;
+    
     localparam MAX_ADDRESS = 7'h04;
 
     always @(posedge clk or negedge rst_n) begin
@@ -65,13 +65,13 @@ module spi_peripheral(
             address_shift <= 7'h00;
             data_shift <= 8'h00;
             bit_count <= 4'd0;
-            transaction_valid <= 1'b0;
+
         end else if (ncs_falling) begin
             bit_count <= 4'd0;
             rw_bit <= 1'b0;
             address_shift <= 7'h00;
             data_shift <= 8'h00;
-            transaction_valid <= 1'b0;
+            
         end else if (sclk_rising && !ncs_sync) begin
             if (bit_count == 4'd0) begin
                 rw_bit <= copi_sync;
